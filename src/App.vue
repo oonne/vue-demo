@@ -13,7 +13,10 @@ const handleClickMenu = (options) => {
 
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider theme="light" collapsible>
+    <a-layout-sider
+      theme="light"
+      collapsible
+    >
       <a-menu
         mode="inline"
         @click="handleClickMenu"

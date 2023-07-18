@@ -1,5 +1,6 @@
 <script setup lang="ts">
 console.log('切换到A1');
+
 </script>
 
 <template>
