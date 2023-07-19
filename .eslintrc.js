@@ -15,6 +15,12 @@ module.exports = {
       node: {
         extensions: ['.js', '.ts', '.css'],
       },
+      alias: {
+        map: [
+          ['@', './src'],
+        ],
+        extensions: ['.ts', '.tsx'], // 可忽略的后缀名
+      },
     },
   },
   parser: 'vue-eslint-parser',
@@ -29,8 +35,8 @@ module.exports = {
   ],
   rules: {
     'import/extensions': ['error', 'always', {
-      js: 'never',
       ts: 'never',
+      tsx: 'never',
       vue: 'never',
     }],
   },
