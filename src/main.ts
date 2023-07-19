@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import pages from './constant/pages';
-import App from './App.vue';
+import pages from '@/constant/pages';
+import App from '@/App.vue';
 
 const app = createApp(App);
 
