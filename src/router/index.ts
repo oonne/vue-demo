@@ -1,16 +1,28 @@
+import type { App } from 'vue';
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import pages from './pages';
 
 // 懒加载
-const getPage = (path: string) => import(`../pages${path}.vue`);
+const lazyloadPage = (path: string) => import(`/src/pages${path}.vue`);
 
+// 路由
 const routes: RouteRecordRaw[] = pages.map((route) => ({
   path: route.path,
   name: route.pageName,
-  component: getPage.bind(this, route.path),
+  component: lazyloadPage(route.component),
 }));
 
-export default createRouter({
+// 404重定向到首页
+routes.push({
+  path: '/:pathMatch(.*)*',
+  redirect: '/404',
+});
+
+export const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+export const setupRouter = (app: App<Element>) => {
+  app.use(router);
+};
