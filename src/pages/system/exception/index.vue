@@ -1,10 +1,22 @@
 <script setup lang="ts">
-console.log('404');
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+console.log(route.path);
 </script>
 
 <template>
-  <div>错误页面，如404/403/500等</div>
-  <div>TODO</div>
+  <a-result
+    status="404"
+    title="404"
+    sub-title="Sorry, the page you visited does not exist."
+  >
+    <template #extra>
+      <a-button type="primary">
+        Back Home
+      </a-button>
+    </template>
+  </a-result>
 </template>
 
 <style scoped>
