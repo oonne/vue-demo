@@ -39,5 +39,10 @@ module.exports = {
       tsx: 'never',
       vue: 'never',
     }],
+    'vue/multi-word-component-names': ['error', {
+      ignores: [
+        'index',
+      ],
+    }],
   },
 };

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-console.log('切换到A1');
 </script>
 
 <template>
-  <div>A1</div>
+  <div>demo-2</div>
 </template>
 
 <style scoped>
