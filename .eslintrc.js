@@ -35,6 +35,7 @@ module.exports = {
   ],
   rules: {
     'import/extensions': ['error', 'always', {
+      js: 'never',
       ts: 'never',
       tsx: 'never',
       vue: 'never',
