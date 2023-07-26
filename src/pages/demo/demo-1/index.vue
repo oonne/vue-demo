@@ -20,7 +20,6 @@ const lang = ref('zh_CN');
 const handleChangeLang = (value: LocaleType) => {
   setLocale(value);
 };
-
 </script>
 
 <template>
