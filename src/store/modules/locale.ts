@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE } from '@/config/default';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import zhTW from 'ant-design-vue/es/locale/zh_TW';
 import enUS from 'ant-design-vue/es/locale/en_US';
-import type { LocaleType } from '@/types/index';
+import type { LocaleType, LocaleSetting } from '@/types/index';
 
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-tw';
@@ -30,6 +30,29 @@ const localeSettings = {
   },
 };
 
+/**
+ * 获取浏览器默认的语言
+ */
+const getSystemLang = (): LocaleType => {
+  const { language } = window.navigator;
+
+  // 简体中文
+  if (language === 'zh-CN') {
+    return 'zh_CN';
+  }
+  // 其他中文默认繁体
+  if (language.includes('zh')) {
+    return 'zh_TW';
+  }
+  // 英文
+  if (language === 'en') {
+    return 'en_US';
+  }
+
+  // 缺省语言
+  return DEFAULT_LOCALE;
+};
+
 /*
  * 多语言设置
  */
@@ -37,6 +60,8 @@ export default defineStore('locale', () => {
   // 当前语言
   const locale = ref<LocaleType>(DEFAULT_LOCALE);
   const antLocale = ref(localeSettings[DEFAULT_LOCALE].antLocale);
+
+  // 更改语言
   const setLocale = (value: LocaleType) => {
     locale.value = value;
     i18n.global.locale = value;
@@ -44,11 +69,30 @@ export default defineStore('locale', () => {
     dayjs.locale(localeSettings[value].dayjsLocale);
   };
 
-  // 预设语言
-  // TODO
-
   // 更改语言设置
-  // TODO
+  const setLocaleSetting = (localeSetting: LocaleSetting) => {
+    localStorage.setItem('LOCALE_SETTING', localeSetting);
 
-  return { locale, antLocale, setLocale };
+    if (localeSetting === 'SYSTEM') {
+      setLocale(getSystemLang());
+      return;
+    }
+
+    setLocale(localeSetting);
+  };
+
+  // 预设语言
+  const initLocaleSetting = () => {
+    const storageLocale = localStorage.getItem('LOCALE_SETTING');
+    if (!storageLocale) {
+      setLocaleSetting('SYSTEM');
+      return;
+    }
+
+    setLocaleSetting(storageLocale as LocaleSetting);
+  };
+
+  return {
+    locale, antLocale, setLocale, setLocaleSetting, initLocaleSetting,
+  };
 });

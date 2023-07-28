@@ -4,8 +4,8 @@ import { useLocaleStore } from '@/store/index';
 
 // 语言
 const localeStore = useLocaleStore();
-const { antLocale } = storeToRefs(localeStore);
-
+const { antLocale, initLocaleSetting } = storeToRefs(localeStore);
+initLocaleSetting();
 </script>
 
 <template>
