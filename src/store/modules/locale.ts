@@ -1,6 +1,8 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import dayjs from 'dayjs';
+import i18n from '@/locales/i18n';
+import { DEFAULT_LOCALE } from '@/config/default';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import zhTW from 'ant-design-vue/es/locale/zh_TW';
 import enUS from 'ant-design-vue/es/locale/en_US';
@@ -33,10 +35,11 @@ const localeSettings = {
  */
 export default defineStore('locale', () => {
   // 当前语言
-  const locale = ref<LocaleType>('zh_CN');
-  const antLocale = ref(zhCN);
+  const locale = ref<LocaleType>(DEFAULT_LOCALE);
+  const antLocale = ref(localeSettings[DEFAULT_LOCALE].antLocale);
   const setLocale = (value: LocaleType) => {
     locale.value = value;
+    i18n.global.locale = value;
     antLocale.value = localeSettings[value].antLocale;
     dayjs.locale(localeSettings[value].dayjsLocale);
   };

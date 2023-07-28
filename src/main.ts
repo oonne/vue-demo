@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import Antd from 'ant-design-vue';
 import store from '@/store/store';
+import i18n from '@/locales/i18n';
 import router from '@/router';
 import App from '@/App.vue';
 import 'ant-design-vue/dist/reset.css';
@@ -14,6 +15,9 @@ const bootstrap = async () => {
 
   // Pinia
   app.use(store);
+
+  // i18n
+  app.use(i18n);
 
   // 路由
   app.use(router);
