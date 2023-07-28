@@ -30,7 +30,9 @@ const handleChangeLang = (value: LocaleType) => {
     {{ locale }}
   </div>
   <div>
-    {{ $t('btn_login') }}
+    <a-button type="primary">
+      {{ $t('btn_login') }}
+    </a-button>
   </div>
 
   <a-date-picker />
