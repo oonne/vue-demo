@@ -30,6 +30,8 @@ const handleChangeLang = (value: LocaleType) => {
     {{ locale }}
   </div>
 
+  <a-date-picker />
+
   <a-select
     ref="select"
     v-model:value="lang"

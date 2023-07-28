@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
-// import zhTW from 'ant-design-vue/es/locale/zh_TW';
-// import enUS from 'ant-design-vue/es/locale/en_US';
+import { storeToRefs } from 'pinia';
+import { useLocaleStore } from '@/store/index';
 
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
-// import 'dayjs/locale/zh-tw';
-// import 'dayjs/locale/en';
-
-dayjs.locale('zh-cn');
-const locale = zhCN;
+// 语言
+const localeStore = useLocaleStore();
+const { antLocale } = storeToRefs(localeStore);
 
 </script>
 
 <template>
-  <a-config-provider :locale="locale">
+  <a-config-provider :locale="antLocale">
     <router-view />
   </a-config-provider>
 </template>
