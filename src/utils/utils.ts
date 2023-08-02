@@ -16,6 +16,20 @@ const randomDigits = (n: number): number => {
 const randomWithin = (n: number): number => Math.floor(Math.random() * n);
 
 /**
+ *  获取n位的随机数字或字母
+ */
+const randomChars = (n: number): string => {
+  const arr = [];
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+
+  for (let i = 0; i < n; i += 1) {
+    arr.push(chars[randomWithin(chars.length)]);
+  }
+
+  return arr.join('');
+};
+
+/**
  *  延迟一定时间，单位毫秒。
  */
 const wait = async (time: number): Promise<void> => new Promise((resolve) => {
@@ -47,6 +61,7 @@ const debounce = (fn: Function, waitTime: number) => {
 export default {
   randomDigits,
   randomWithin,
+  randomChars,
   wait,
   debounce,
 };

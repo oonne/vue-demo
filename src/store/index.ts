@@ -1,6 +1,7 @@
-/* eslint-disable import/prefer-default-export */
 import useLocaleStore from './modules/locale';
+import useUserStore from './modules/user';
 
 export {
   useLocaleStore,
+  useUserStore,
 };

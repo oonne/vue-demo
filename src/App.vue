@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useLocaleStore } from '@/store/index';
-import { colorPrimary } from '@/config/index';
+import { useLocaleStore, useUserStore } from '@/store/index';
+import config from '@/config/index';
+
+const { colorPrimary } = config;
 
 // 语言
 const localeStore = useLocaleStore();
 const { antLocale } = storeToRefs(localeStore);
 localeStore.initLocaleSetting();
+
+// 企业、用户
+const userStore = useUserStore();
+userStore.init();
+
 </script>
 
 <template>

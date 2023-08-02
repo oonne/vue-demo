@@ -1,7 +1,7 @@
 {
-  "name": "vue-demo",
+  "name": "vuedemo",
   "private": true,
-  "version": "0.0.21",
+  "version": "0.0.1",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=dev vite",
     "start:test": "cross-env NODE_ENV=test vite",
