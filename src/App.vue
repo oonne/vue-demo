@@ -7,7 +7,7 @@ const { colorPrimary } = config;
 
 // 语言
 const localeStore = useLocaleStore();
-const { antLocale } = storeToRefs(localeStore);
+const { locale, antLocale } = storeToRefs(localeStore);
 localeStore.initLocaleSetting();
 
 // 企业、用户
@@ -25,7 +25,9 @@ userStore.init();
       },
     }"
   >
-    <router-view />
+    <div :class="`lang_${locale}`">
+      <router-view />
+    </div>
   </a-config-provider>
 </template>
 

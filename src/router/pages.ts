@@ -13,7 +13,7 @@ const pages: Page[] = [
    */
   // 登录
   {
-    pageName: 'Login',
+    pageName: 'login',
     path: '/login',
     component: '/system/login/index',
   },
