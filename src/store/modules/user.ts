@@ -16,7 +16,7 @@ const generateUUID = () => `${source}-${randomChars(12)}-${randomChars(4)}`;
 /*
  * 企业和用户信息
  */
-export default defineStore('account', () => {
+export default defineStore('user', () => {
   const corpInfo = ref<CorpInfo>({});
   const userInfo = ref<UserInfo>({});
   const uuid = ref('');
