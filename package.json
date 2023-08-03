@@ -3,12 +3,14 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "start:local": "cross-env NODE_ENV=local vite",
-    "start:test": "cross-env NODE_ENV=test vite",
-    "start:prod": "cross-env NODE_ENV=prod vite",
-    "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
+    "start:dev": "vite --mode dev",
+    "start:test": "vite --mode test",
+    "start": "vite",
+    "build:dev": "vue-tsc --noEmit && vite build --mode dev",
+    "build:test": "vue-tsc --noEmit && vite build --mode dev",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "clean": "rimraf dist &&rimraf node_modules/.cache/ && rimraf node_modules/.vite",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "prepare": "husky install"
   },
@@ -45,5 +47,9 @@
     "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
       "eslint --fix"
     ]
+  },
+  "engines": {
+    "node": ">=20.4.0",
+    "npm": ">=9.7.2"
   }
 }
