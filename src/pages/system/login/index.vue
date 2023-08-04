@@ -6,7 +6,11 @@ auth.test1({ a: 'test1' });
 
 <template>
   <div class="login-bg">
-    登录页面TODO
+    <div class="login-warp">
+      <a-button type="primary">
+        {{ $t('btn_login') }}
+      </a-button>
+    </div>
   </div>
 </template>
 
@@ -15,5 +19,13 @@ auth.test1({ a: 'test1' });
   min-height: 100vh;
   background: url('@/assets/imgs/login-bg.png');
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-warp{
+  width: 600px;
+  height: 400px;
+  background: #fff;
 }
 </style>
