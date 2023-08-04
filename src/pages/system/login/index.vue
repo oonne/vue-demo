@@ -1,5 +1,7 @@
 <script setup lang="ts">
-console.log('登录页');
+import { auth } from '@/api/index';
+
+auth.test1({ a: 'test1' });
 </script>
 
 <template>
