@@ -11,6 +11,8 @@ export default {
   systemName: DEFAULT_SYSTEM_NAME,
   // 主题色
   colorPrimary: '#007FFF',
+  // 超时时间
+  apiTimeOut: 10000,
 
   // 环境变量
   baseUrl,

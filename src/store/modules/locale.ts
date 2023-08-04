@@ -58,6 +58,7 @@ const getSystemLang = (): LocaleType => {
  */
 export default defineStore('locale', () => {
   // 当前语言
+  const localeSetting = ref<LocaleSetting>('SYSTEM');
   const locale = ref<LocaleType>(DEFAULT_LOCALE);
   const antLocale = ref(localeSettings[DEFAULT_LOCALE].antLocale);
 
@@ -70,15 +71,16 @@ export default defineStore('locale', () => {
   };
 
   // 更改语言设置
-  const setLocaleSetting = (localeSetting: LocaleSetting) => {
-    localStorage.setItem('LOCALE_SETTING', localeSetting);
+  const setLocaleSetting = (setting: LocaleSetting) => {
+    localeSetting.value = setting;
+    localStorage.setItem('LOCALE_SETTING', setting);
 
-    if (localeSetting === 'SYSTEM') {
+    if (setting === 'SYSTEM') {
       setLocale(getSystemLang());
       return;
     }
 
-    setLocale(localeSetting);
+    setLocale(setting);
   };
 
   // 预设语言
@@ -93,6 +95,6 @@ export default defineStore('locale', () => {
   };
 
   return {
-    locale, antLocale, setLocale, setLocaleSetting, initLocaleSetting,
+    localeSetting, locale, antLocale, setLocale, setLocaleSetting, initLocaleSetting,
   };
 });
