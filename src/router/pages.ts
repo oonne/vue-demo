@@ -2,6 +2,9 @@ interface Page {
   pageName: string;
   path: string;
   component: string;
+  meta?: {
+    noNeedLogin?: boolean;
+  };
 }
 
 /*
@@ -11,11 +14,20 @@ const pages: Page[] = [
   /*
    * 系统页面
    */
+  // 首页
+  {
+    pageName: 'home',
+    path: '/',
+    component: '/system/home/index',
+  },
   // 登录
   {
     pageName: 'login',
     path: '/login',
     component: '/system/login/index',
+    meta: {
+      noNeedLogin: true,
+    },
   },
 
   // 异常
@@ -23,16 +35,25 @@ const pages: Page[] = [
     pageName: '403',
     path: '/403',
     component: '/system/exception/index',
+    meta: {
+      noNeedLogin: true,
+    },
   },
   {
     pageName: '404',
     path: '/404',
     component: '/system/exception/index',
+    meta: {
+      noNeedLogin: true,
+    },
   },
   {
     pageName: '500',
     path: '/500',
     component: '/system/exception/index',
+    meta: {
+      noNeedLogin: true,
+    },
   },
 
   /*
