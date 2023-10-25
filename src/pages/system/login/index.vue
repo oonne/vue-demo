@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { auth } from '@/api/index';
-
-auth.test1({ a: 'test1' });
 </script>
 
 <template>
@@ -16,9 +13,8 @@ auth.test1({ a: 'test1' });
 
 <style scoped>
 .login-bg{
+  background: #f5f5f5;
   min-height: 100vh;
-  background: url('@/assets/imgs/login-bg.png');
-  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
