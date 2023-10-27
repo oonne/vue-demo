@@ -11,13 +11,13 @@ const route = useRoute();
 const code = ref(route.name as ExcrptionCode);
 const subTitle = computed(() => {
   if (code.value === '403') {
-    return t('message.exception_403');
+    return t('system.exception_403');
   }
   if (code.value === '404') {
-    return t('message.exception_404');
+    return t('system.exception_404');
   }
   if (code.value === '500') {
-    return t('message.exception_500');
+    return t('system.exception_500');
   }
   return '';
 });
