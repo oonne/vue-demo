@@ -3,10 +3,8 @@
     <div class="login-warp">
       <a-form
         :model="formState"
-        name="basic"
-        :label-col="{ span: 8 }"
-        :wrapper-col="{ span: 16 }"
-        autocomplete="off"
+        name="normal_login"
+        class="login-form"
         @submit="onSubmit"
       >
         <a-form-item
@@ -14,7 +12,11 @@
           name="username"
           :rules="[{ required: true, message: 'Please input your username!' }]"
         >
-          <a-input v-model:value="formState.username" />
+          <a-input v-model:value="formState.username">
+            <template #prefix>
+              <UserOutlined class="site-form-item-icon" />
+            </template>
+          </a-input>
         </a-form-item>
 
         <a-form-item
@@ -22,16 +24,31 @@
           name="password"
           :rules="[{ required: true, message: 'Please input your password!' }]"
         >
-          <a-input-password v-model:value="formState.password" />
+          <a-input-password v-model:value="formState.password">
+            <template #prefix>
+              <LockOutlined class="site-form-item-icon" />
+            </template>
+          </a-input-password>
         </a-form-item>
 
-        <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
+        <a-form-item>
+          <a
+            class="login-form-forgot"
+            href=""
+          >Forgot password</a>
+        </a-form-item>
+
+        <a-form-item>
           <a-button
+            :disabled="disabled"
             type="primary"
             html-type="submit"
+            class="login-form-button"
           >
-            {{ $t('system.btn_login') }}
+            Log in
           </a-button>
+          Or
+          <a href="">register now!</a>
         </a-form-item>
       </a-form>
     </div>
@@ -39,17 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
-
-interface FormState {
-  username: string;
-  password: string;
-}
+import { reactive, computed } from 'vue';
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import type { FormState } from './type';
 
 const formState = reactive<FormState>({
   username: '',
   password: '',
 });
+const disabled = computed(() => !(formState.username && formState.password));
 const onSubmit = (values: any) => {
   console.log('提交:', values);
 };
@@ -68,5 +83,15 @@ const onSubmit = (values: any) => {
   width: 600px;
   height: 400px;
   background: #fff;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
 }
 </style>

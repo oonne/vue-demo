@@ -1,7 +1,7 @@
 export default {
   common: {
     lang_name: '中文（繁体）',
-    username: '用戶名',
+    account: '账号',
     phone: '手機號',
     email: '郵箱',
     verification_code: '驗證碼',
@@ -11,6 +11,7 @@ export default {
     exception_403: '沒有訪問權限',
     exception_404: '頁面不存在',
     exception_500: '服務器錯誤',
+    login_name: '手機/郵箱/账号',
     btn_login: '登錄',
     btn_back: '返回',
   },
