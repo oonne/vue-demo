@@ -20,15 +20,6 @@ const pages: Page[] = [
     path: '/',
     component: '/system/home/index',
   },
-  // 登录
-  {
-    pageName: 'login',
-    path: '/login',
-    component: '/system/login/index',
-    meta: {
-      noNeedLogin: true,
-    },
-  },
 
   // 异常
   {
@@ -51,6 +42,34 @@ const pages: Page[] = [
     pageName: '500',
     path: '/500',
     component: '/system/exception/index',
+    meta: {
+      noNeedLogin: true,
+    },
+  },
+
+  // 登录
+  {
+    pageName: 'login',
+    path: '/login',
+    component: '/system/login/LoginFrom',
+    meta: {
+      noNeedLogin: true,
+    },
+  },
+  // 注册
+  {
+    pageName: 'registration',
+    path: '/registration',
+    component: '/system/login/LoginFrom',
+    meta: {
+      noNeedLogin: true,
+    },
+  },
+  // 忘记密码
+  {
+    pageName: 'forgetpassword',
+    path: '/forgetpassword',
+    component: '/system/login/LoginFrom',
     meta: {
       noNeedLogin: true,
     },
