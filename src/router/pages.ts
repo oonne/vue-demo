@@ -51,7 +51,7 @@ const pages: Page[] = [
   {
     pageName: 'login',
     path: '/login',
-    component: '/system/login/LoginFrom',
+    component: '/system/login/LoginForm',
     meta: {
       noNeedLogin: true,
     },
@@ -60,7 +60,7 @@ const pages: Page[] = [
   {
     pageName: 'registration',
     path: '/registration',
-    component: '/system/login/LoginFrom',
+    component: '/system/login/LoginForm',
     meta: {
       noNeedLogin: true,
     },
@@ -69,7 +69,7 @@ const pages: Page[] = [
   {
     pageName: 'forgetpassword',
     path: '/forgetpassword',
-    component: '/system/login/LoginFrom',
+    component: '/system/login/LoginForm',
     meta: {
       noNeedLogin: true,
     },
