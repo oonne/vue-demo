@@ -40,7 +40,7 @@
             type="primary"
             html-type="submit"
           >
-            {{ $t('btn_login') }}
+            {{ $t('system.btn_login') }}
           </a-button>
         </a-form-item>
       </a-form>
