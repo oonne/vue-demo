@@ -1,18 +1,23 @@
+<!-- 登录表单 -->
 <template>
   <div class="login-bg">
     <div class="login-warp">
       <a-form
+        name="login"
         :model="formState"
-        name="normal_login"
-        class="login-form"
+        :colon="false"
+        hide-required-mark
+        scroll-to-first-error
         @submit="onSubmit"
       >
         <a-form-item
-          label="Username"
-          name="username"
-          :rules="[{ required: true, message: 'Please input your username!' }]"
+          name="loginName"
+          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('system.login_name')}` }]"
         >
-          <a-input v-model:value="formState.username">
+          <a-input
+            v-model:value="formState.loginName"
+            :placeholder="$t('system.login_name')"
+          >
             <template #prefix>
               <UserOutlined class="site-form-item-icon" />
             </template>
@@ -20,11 +25,10 @@
         </a-form-item>
 
         <a-form-item
-          label="Password"
           name="password"
-          :rules="[{ required: true, message: 'Please input your password!' }]"
+          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('common.password')}` }]"
         >
-          <a-input-password v-model:value="formState.password">
+          <a-input-password v-model:value="formState.password" :placeholder="$t('common.password')">
             <template #prefix>
               <LockOutlined class="site-form-item-icon" />
             </template>
@@ -32,39 +36,40 @@
         </a-form-item>
 
         <a-form-item>
-          <a
-            class="login-form-forgot"
-            href=""
-          >Forgot password</a>
+          <a-button
+            type="primary"
+            class="submit-btn"
+            :loading="loginLoading"
+            :disabled="loginBtnDisabled"
+            html-type="submit"
+          >
+            {{ $t('system.btn_login') }}
+          </a-button>
         </a-form-item>
 
-        <a-form-item>
-          <a-button
-            :disabled="disabled"
-            type="primary"
-            html-type="submit"
-            class="login-form-button"
-          >
-            Log in
-          </a-button>
-          Or
-          <a href="">register now!</a>
-        </a-form-item>
+        <div class="bottom-links">
+          <a-button type="link">{{ $t('system.link_forget_password') }}</a-button>
+          <a-button type="link">{{ $t('system.link_register') }}</a-button>
+        </div>
       </a-form>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import type { FormState } from './type';
 
 const formState = reactive<FormState>({
-  username: '',
+  loginName: '',
   password: '',
 });
-const disabled = computed(() => !(formState.username && formState.password));
+const loginLoading = ref(false);
+
+const loginBtnDisabled = computed(() => !(formState.loginName && formState.password));
+
+// 提交
 const onSubmit = (values: any) => {
   console.log('提交:', values);
 };
@@ -80,18 +85,21 @@ const onSubmit = (values: any) => {
   align-items: center;
 }
 .login-warp{
-  width: 600px;
-  height: 400px;
+  width: 400px;
   background: #fff;
+  padding: 30px 40px;
 }
 
-#components-form-demo-normal-login .login-form {
-  max-width: 300px;
+.site-form-item-icon{
+  color: rgba(0,0,0,.25);
 }
-#components-form-demo-normal-login .login-form-forgot {
-  float: right;
-}
-#components-form-demo-normal-login .login-form-button {
+
+.submit-btn{
   width: 100%;
+}
+
+.bottom-links{
+  display: flex;
+  justify-content: space-between;
 }
 </style>

@@ -5,10 +5,10 @@ module.exports = {
     'vue/setup-compiler-macros': true,
   },
   extends: [
-    'prettier',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'airbnb-base',
+    'prettier',
   ],
   settings: {
     'import/resolver': {
