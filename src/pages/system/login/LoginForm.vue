@@ -59,7 +59,11 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import {message} from 'ant-design-vue';
+import {Utils} from '@/utils/index';
 import type { FormState } from './type';
+
+const {sleep} = Utils;
 
 const formState = reactive<FormState>({
   loginName: '',
@@ -70,8 +74,15 @@ const loginLoading = ref(false);
 const loginBtnDisabled = computed(() => !(formState.loginName && formState.password));
 
 // 提交
-const onSubmit = (values: any) => {
-  console.log('提交:', values);
+const onSubmit = async () => {
+  const {loginName, password} = formState;
+  console.log(loginName, password);
+
+  loginLoading.value = true;
+
+  await sleep(300);
+  loginLoading.value = false;
+  message.success('登录成功');
 };
 
 </script>
