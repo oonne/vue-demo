@@ -17,6 +17,7 @@ export default {
     title_register: '註冊',
     login_name: '手機/郵箱/账号',
     btn_login: '登錄',
+    btn_register: '註冊',
     link_login: '登錄',
     link_forget_password: '忘記密碼',
     link_register: '註冊賬號',

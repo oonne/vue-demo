@@ -17,6 +17,7 @@ export default {
     title_register: '注册',
     login_name: '手机/邮箱/账号',
     btn_login: '登录',
+    btn_register: '注册',
     link_login: '登录',
     link_forget_password: '忘记密码',
     link_register: '注册账号',

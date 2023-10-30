@@ -83,7 +83,7 @@ const onSubmit = async () => {
 
   await sleep(300);
   regLoading.value = false;
-  message.success('登录成功');
+  message.success('注册成功');
 };
 
 </script>
