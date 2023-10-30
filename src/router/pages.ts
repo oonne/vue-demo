@@ -58,7 +58,7 @@ const pages: Page[] = [
   },
   // 注册
   {
-    pageName: 'registration',
+    pageName: 'reg',
     path: '/registration',
     component: '/system/login/RegForm',
     meta: {

@@ -45,12 +45,12 @@
             :disabled="regBtnDisabled"
             html-type="submit"
           >
-            {{ $t('system.btn_login') }}
+            {{ $t('system.btn_register') }}
           </a-button>
         </a-form-item>
 
         <div class="bottom-links">
-          <a-button type="link">{{ $t('system.link_login') }}</a-button>
+          <a-button type="link" @click="toPage('login')">{{ $t('system.link_login') }}</a-button>
         </div>
       </a-form>
     </div>
@@ -61,20 +61,24 @@
 import { ref, reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { useRouter } from 'vue-router';
 import { Utils } from '@/utils/index';
 import type { RegFormState } from './type';
 
+const router = useRouter();
 const { sleep } = Utils;
 
+/* 
+ * 表单
+ */
 const formState = reactive<RegFormState>({
   account: '',
   password: '',
 });
 const regLoading = ref(false);
-
 const regBtnDisabled = computed(() => !(formState.account && formState.password));
 
-// 提交
+// 提交表单
 const onSubmit = async () => {
   const { account, password } = formState;
   console.log(account, password);
@@ -85,6 +89,13 @@ const onSubmit = async () => {
   regLoading.value = false;
   message.success('注册成功');
 };
+
+/* 
+ * 跳转链接
+ */
+const toPage = (name: string) => {
+  router.push({ name });
+}
 
 </script>
 

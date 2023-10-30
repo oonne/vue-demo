@@ -51,7 +51,7 @@
 
         <div class="bottom-links">
           <a-button type="link">{{ $t('system.link_forget_password') }}</a-button>
-          <a-button type="link">{{ $t('system.link_register') }}</a-button>
+          <a-button type="link" @click="toPage('reg')">{{ $t('system.link_register') }}</a-button>
         </div>
       </a-form>
     </div>
@@ -62,20 +62,24 @@
 import { ref, reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { useRouter } from 'vue-router';
 import { Utils } from '@/utils/index';
 import type { LoginFormState } from './type';
 
+const router = useRouter();
 const { sleep } = Utils;
 
+/* 
+ * 表单
+ */
 const formState = reactive<LoginFormState>({
   loginName: '',
   password: '',
 });
 const loginLoading = ref(false);
-
 const loginBtnDisabled = computed(() => !(formState.loginName && formState.password));
 
-// 提交
+// 提交表单
 const onSubmit = async () => {
   const { loginName, password } = formState;
   console.log(loginName, password);
@@ -86,6 +90,13 @@ const onSubmit = async () => {
   loginLoading.value = false;
   message.success('登录成功');
 };
+
+/* 
+ * 跳转链接
+ */
+const toPage = (name: string) => {
+  router.push({ name });
+}
 
 </script>
 
