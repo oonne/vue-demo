@@ -60,7 +60,7 @@ const pages: Page[] = [
   {
     pageName: 'registration',
     path: '/registration',
-    component: '/system/login/LoginForm',
+    component: '/system/login/RegForm',
     meta: {
       noNeedLogin: true,
     },

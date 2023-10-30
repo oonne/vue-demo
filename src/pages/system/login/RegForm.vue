@@ -1,8 +1,8 @@
-<!-- 登录表单 -->
+<!-- 注册表单 -->
 <template>
   <div class="login-bg">
     <div class="login-warp">
-      <div class="title">{{ $t('system.title_login') }}</div>
+      <div class="title">{{ $t('system.title_register') }}</div>
 
       <a-form
         name="login"
@@ -13,12 +13,12 @@
         @submit="onSubmit"
       >
         <a-form-item
-          name="loginName"
-          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('system.login_name')}` }]"
+          name="account"
+          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('common.account')}` }]"
         >
           <a-input
-            v-model:value="formState.loginName"
-            :placeholder="$t('system.login_name')"
+            v-model:value="formState.account"
+            :placeholder="$t('common.account')"
           >
             <template #prefix>
               <UserOutlined class="site-form-item-icon" />
@@ -41,8 +41,8 @@
           <a-button
             type="primary"
             class="submit-btn"
-            :loading="loginLoading"
-            :disabled="loginBtnDisabled"
+            :loading="regLoading"
+            :disabled="regBtnDisabled"
             html-type="submit"
           >
             {{ $t('system.btn_login') }}
@@ -50,8 +50,7 @@
         </a-form-item>
 
         <div class="bottom-links">
-          <a-button type="link">{{ $t('system.link_forget_password') }}</a-button>
-          <a-button type="link">{{ $t('system.link_register') }}</a-button>
+          <a-button type="link">{{ $t('system.link_login') }}</a-button>
         </div>
       </a-form>
     </div>
@@ -63,27 +62,27 @@ import { ref, reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { Utils } from '@/utils/index';
-import type { LoginFormState } from './type';
+import type { RegFormState } from './type';
 
 const { sleep } = Utils;
 
-const formState = reactive<LoginFormState>({
-  loginName: '',
+const formState = reactive<RegFormState>({
+  account: '',
   password: '',
 });
-const loginLoading = ref(false);
+const regLoading = ref(false);
 
-const loginBtnDisabled = computed(() => !(formState.loginName && formState.password));
+const regBtnDisabled = computed(() => !(formState.account && formState.password));
 
 // 提交
 const onSubmit = async () => {
-  const { loginName, password } = formState;
-  console.log(loginName, password);
+  const { account, password } = formState;
+  console.log(account, password);
 
-  loginLoading.value = true;
+  regLoading.value = true;
 
   await sleep(300);
-  loginLoading.value = false;
+  regLoading.value = false;
   message.success('登录成功');
 };
 
