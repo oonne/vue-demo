@@ -2,7 +2,9 @@
 <template>
   <div class="login-bg">
     <div class="login-warp">
-      <div class="title">{{ $t('system.title_register') }}</div>
+      <div class="title">
+        {{ $t('system.title_register') }}
+      </div>
 
       <a-form
         name="login"
@@ -12,9 +14,13 @@
         scroll-to-first-error
         @submit="onSubmit"
       >
+        <!-- 账号 -->
         <a-form-item
           name="account"
-          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('common.account')}` }]"
+          :rules="[{
+            required: true,
+            message: `${$t('common.msg_please_enter')}${$t('common.account')}`
+          }]"
         >
           <a-input
             v-model:value="formState.account"
@@ -26,11 +32,18 @@
           </a-input>
         </a-form-item>
 
+        <!-- 密码 -->
         <a-form-item
           name="password"
-          :rules="[{ required: true, message: `${$t('common.msg_please_enter')}${$t('common.password')}` }]"
+          :rules="[{
+            required: true,
+            message: `${$t('common.msg_please_enter')}${$t('common.password')}`
+          }]"
         >
-          <a-input-password v-model:value="formState.password" :placeholder="$t('common.password')">
+          <a-input-password
+            v-model:value="formState.password"
+            :placeholder="$t('common.password')"
+          >
             <template #prefix>
               <LockOutlined class="site-form-item-icon" />
             </template>
@@ -50,7 +63,12 @@
         </a-form-item>
 
         <div class="bottom-links">
-          <a-button type="link" @click="toPage('login')">{{ $t('system.link_login') }}</a-button>
+          <a-button
+            type="link"
+            @click="toPage('login')"
+          >
+            {{ $t('system.link_login') }}
+          </a-button>
         </div>
       </a-form>
     </div>
@@ -68,7 +86,7 @@ import type { RegFormState } from './type';
 const router = useRouter();
 const { sleep } = Utils;
 
-/* 
+/*
  * 表单
  */
 const formState = reactive<RegFormState>({
@@ -90,12 +108,12 @@ const onSubmit = async () => {
   message.success('注册成功');
 };
 
-/* 
+/*
  * 跳转链接
  */
 const toPage = (name: string) => {
   router.push({ name });
-}
+};
 
 </script>
 

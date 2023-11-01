@@ -1,9 +1,9 @@
-<!-- 登录表单 -->
+<!-- 忘记密码表单 -->
 <template>
   <div class="login-bg">
     <div class="login-warp">
       <div class="title">
-        {{ $t('system.title_login') }}
+        {{ $t('system.title_reset_password') }}
       </div>
 
       <a-form
@@ -14,66 +14,72 @@
         scroll-to-first-error
         @submit="onSubmit"
       >
-        <!-- 账号/手机/邮箱 -->
+        <!-- 邮箱或手机 -->
+        <a-form-item>
+          <a-radio-group v-model:value="formState.type">
+            <a-radio-button value="phone">
+              {{ $t('common.phone') }}
+            </a-radio-button>
+            <a-radio-button value="email">
+              {{ $t('common.email') }}
+            </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+
+        <!-- 手机 -->
         <a-form-item
-          name="loginName"
+          v-if="formState.type === 'phone'"
           :rules="[{
             required: true,
-            message: `${$t('common.msg_please_enter')}${$t('system.login_name')}`
+            message: `${$t('common.msg_please_enter')}${$t('common.phone')}`
           }]"
         >
           <a-input
-            v-model:value="formState.loginName"
-            :placeholder="$t('system.login_name')"
+            v-model:value="formState.phone"
+            :placeholder="$t('common.phone')"
           >
             <template #prefix>
-              <UserOutlined class="site-form-item-icon" />
+              <PhoneOutlined class="site-form-item-icon" />
             </template>
           </a-input>
         </a-form-item>
 
-        <!-- 密码 -->
+        <!-- 邮箱 -->
         <a-form-item
-          name="password"
+          v-if="formState.type === 'email'"
           :rules="[{
             required: true,
-            message: `${$t('common.msg_please_enter')}${$t('common.password')}`
+            message: `${$t('common.msg_please_enter')}${$t('common.email')}`
           }]"
         >
-          <a-input-password
-            v-model:value="formState.password"
-            :placeholder="$t('common.password')"
+          <a-input
+            v-model:value="formState.email"
+            :placeholder="$t('common.email')"
           >
             <template #prefix>
-              <LockOutlined class="site-form-item-icon" />
+              <MailOutlined class="site-form-item-icon" />
             </template>
-          </a-input-password>
+          </a-input>
         </a-form-item>
 
         <a-form-item>
           <a-button
             type="primary"
             class="submit-btn"
-            :loading="loginLoading"
-            :disabled="loginBtnDisabled"
+            :loading="resetLoading"
+            :disabled="resetBtnDisabled"
             html-type="submit"
           >
-            {{ $t('system.btn_login') }}
+            {{ $t('system.btn_reset_password') }}
           </a-button>
         </a-form-item>
 
         <div class="bottom-links">
           <a-button
             type="link"
-            @click="toPage('resetPassword')"
+            @click="toPage('login')"
           >
-            {{ $t('system.link_forget_password') }}
-          </a-button>
-          <a-button
-            type="link"
-            @click="toPage('reg')"
-          >
-            {{ $t('system.link_register') }}
+            {{ $t('system.link_login') }}
           </a-button>
         </div>
       </a-form>
@@ -83,11 +89,11 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import { PhoneOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
 import { Utils } from '@/utils/index';
-import type { LoginFormState } from './type';
+import type { ResetFormState } from './type';
 
 const router = useRouter();
 const { sleep } = Utils;
@@ -95,23 +101,24 @@ const { sleep } = Utils;
 /*
  * 表单
  */
-const formState = reactive<LoginFormState>({
-  loginName: '',
-  password: '',
+const formState = reactive<ResetFormState>({
+  type: 'phone',
+  phone: '',
+  email: '',
 });
-const loginLoading = ref(false);
-const loginBtnDisabled = computed(() => !(formState.loginName && formState.password));
+const resetLoading = ref(false);
+const resetBtnDisabled = computed(() => !(formState.phone || formState.email));
 
 // 提交表单
 const onSubmit = async () => {
-  const { loginName, password } = formState;
-  console.log(loginName, password);
+  const { type, phone, email } = formState;
+  console.log(type, phone, email);
 
-  loginLoading.value = true;
+  resetLoading.value = true;
 
   await sleep(300);
-  loginLoading.value = false;
-  message.success('登录成功');
+  resetLoading.value = false;
+  message.success('已经成功');
 };
 
 /*

@@ -67,9 +67,9 @@ const pages: Page[] = [
   },
   // 忘记密码
   {
-    pageName: 'forgetpassword',
-    path: '/forgetpassword',
-    component: '/system/login/LoginForm',
+    pageName: 'resetPassword',
+    path: '/reset-password',
+    component: '/system/login/ResetForm',
     meta: {
       noNeedLogin: true,
     },
