@@ -106,6 +106,9 @@ const onSubmit = async () => {
   await sleep(300);
   regLoading.value = false;
   message.success('注册成功');
+
+  localStorage.setItem('token', 'mock-token');
+  router.replace({ name: 'home' });
 };
 
 /*

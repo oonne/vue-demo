@@ -112,6 +112,9 @@ const onSubmit = async () => {
   await sleep(300);
   loginLoading.value = false;
   message.success('登录成功');
+
+  localStorage.setItem('token', 'mock-token');
+  router.replace({ name: 'home' });
 };
 
 /*

@@ -118,7 +118,14 @@ const onSubmit = async () => {
 
   await sleep(300);
   resetLoading.value = false;
-  message.success('已经成功');
+
+  // 功能待定 TODO
+  if (type === 'phone') {
+    message.success('验证码已发送至手机');
+  }
+  if (type === 'email') {
+    message.success('重置链接已发送至邮箱');
+  }
 };
 
 /*

@@ -14,13 +14,6 @@ const pages: Page[] = [
   /*
    * 系统页面
    */
-  // 首页
-  {
-    pageName: 'home',
-    path: '/',
-    component: '/system/home/index',
-  },
-
   // 异常
   {
     pageName: '403',
@@ -51,7 +44,7 @@ const pages: Page[] = [
   {
     pageName: 'login',
     path: '/login',
-    component: '/system/login/LoginForm',
+    component: '/system/login/login-form',
     meta: {
       noNeedLogin: true,
     },
@@ -60,7 +53,7 @@ const pages: Page[] = [
   {
     pageName: 'reg',
     path: '/registration',
-    component: '/system/login/RegForm',
+    component: '/system/login/reg-form',
     meta: {
       noNeedLogin: true,
     },
@@ -69,10 +62,26 @@ const pages: Page[] = [
   {
     pageName: 'resetPassword',
     path: '/reset-password',
-    component: '/system/login/ResetForm',
+    component: '/system/login/reset-form',
     meta: {
       noNeedLogin: true,
     },
+  },
+
+  /*
+   * 个人中心
+   */
+  // 首页
+  {
+    pageName: 'home',
+    path: '/home',
+    component: '/user/home/index',
+  },
+  // 账号信息
+  {
+    pageName: 'userInfo',
+    path: '/user-info',
+    component: '/user/info/index',
   },
 
   /*
