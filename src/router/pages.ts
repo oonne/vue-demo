@@ -1,3 +1,4 @@
+import Layout from '@/layout/index.vue';
 import type { RouteRecordRaw } from 'vue-router';
 
 const pages: RouteRecordRaw[] = [
@@ -61,7 +62,17 @@ const pages: RouteRecordRaw[] = [
   /*
    * 个人中心
    */
-
+  {
+    path: '/profile',
+    component: Layout,
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/pages/profile/home/index.vue'),
+        name: 'home',
+      },
+    ],
+  },
 ];
 
 export default pages;
