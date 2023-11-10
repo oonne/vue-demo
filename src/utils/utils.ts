@@ -19,7 +19,7 @@ const randomWithin = (n: number): number => Math.floor(Math.random() * n);
  *  获取n位的随机数字或字母
  */
 const randomChars = (n: number): string => {
-  const arr = [];
+  const arr: string[] = [];
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
 
   for (let i = 0; i < n; i += 1) {
